@@ -1,0 +1,23 @@
+[
+  {
+    "topic": "What deep learning algorithm is used for image denoising?",
+    "expected_keyword": "autoencoder",
+    "min_faithfulness": 0.8,
+    "min_distractor_plausibility": 0.3,
+    "note": "Verified in test_generate.py and test_evaluate.py — correct answer must reference the CAE/autoencoder, not a different architecture."
+  },
+  {
+    "topic": "What conventional technique is used for image denoising before deep learning?",
+    "expected_keyword": "filter",
+    "min_faithfulness": 0.8,
+    "min_distractor_plausibility": 0.3,
+    "note": "Verified in test_generate.py — correct answer must reference spatial/frequency-domain filtering."
+  },
+  {
+    "topic": "Which optical component aligns the polarization of the beam?",
+    "expected_keyword": "half-wave plate",
+    "min_faithfulness": 0.8,
+    "min_distractor_plausibility": 0.0,
+    "note": "Verified in test_selfcheck.py and test_generate.py. Distractor floor set to 0.0 deliberately — test_evaluate.py already showed this topic scores 0.0 on distractor plausibility even when faithful; that's a known, accepted weak spot, not a regression to chase yet."
+  }
+]

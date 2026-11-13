@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ExamForge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">E</span><span>ExamForge</span></div>
+    <ol class="steps" id="steps" aria-label="Progress">
+      <li data-step="upload">Upload</li>
+      <li data-step="setup">Topic</li>
+      <li data-step="exam">Exam</li>
+      <li data-step="results">Results</li>
+    </ol>
+  </header>
+
+  <main>
+    <div id="error" class="banner" role="alert" hidden>
+      <span id="error-text"></span>
+      <button type="button" id="error-close" aria-label="Dismiss">&times;</button>
+    </div>
+
+    <!-- 1. Upload -->
+    <section id="view-upload" class="view">
+      <h1>Turn a document into an exam</h1>
+      <p class="lede">Upload a book chapter or study notes. ExamForge indexes it, writes multiple-choice questions grounded in the text, and checks each one against its source.</p>
+
+      <button type="button" id="dropzone" class="dropzone">
+        <strong>Choose a file</strong> or drop it here
+        <span class="muted">PDF, DOCX or TXT</span>
+      </button>
+      <input type="file" id="file-input" accept=".pdf,.docx,.txt" hidden>
+
+      <div id="recent" class="recent" hidden>
+        <h2>Already indexed</h2>
+        <div id="recent-list" class="chips"></div>
+      </div>
+    </section>
+
+    <!-- 2. Topic -->
+    <section id="view-setup" class="view" hidden>
+      <h1>What should the exam cover?</h1>
+      <p class="doc-line">
+        <span class="muted">Document:</span> <strong id="setup-source"></strong>
+        <button type="button" id="change-doc" class="link">Change</button>
+      </p>
+      <p class="muted" id="setup-info"></p>
+
+      <form id="setup-form" class="card">
+        <label for="topic">Topic</label>
+        <input id="topic" type="text" autocomplete="off" maxlength="300"
+               placeholder="e.g. how the convolutional autoencoder removes dust noise">
+        <p class="hint">Be specific. A vague topic retrieves vague passages, and the questions get weaker.</p>
+
+        <label for="num-questions">Number of questions</label>
+        <input id="num-questions" type="number" min="1" max="10" value="3">
+        <p class="hint">More questions means a longer wait, because each one is verified against the source.</p>
+
+        <button type="submit" class="primary">Generate exam</button>
+      </form>
+    </section>
+
+    <!-- 3. Exam -->
+    <section id="view-exam" class="view" hidden>
+      <div id="exam-body"></div>
+    </section>
+
+    <!-- 4. Results -->
+    <section id="view-results" class="view" hidden>
+      <div id="results-body"></div>
+    </section>
+  </main>
+
+  <div id="loading" class="overlay" hidden role="status" aria-live="polite">
+    <div class="overlay-card">
+      <div class="spinner" aria-hidden="true"></div>
+      <p id="loading-text"></p>
+      <p id="loading-time" class="muted"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
